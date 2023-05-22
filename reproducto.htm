@@ -1,0 +1,43 @@
+<script src="https://www.youtube.com/iframe_api?key=AIzaSyDctmqC5FHYX_akzK4AAN2SsRyV1OY-jMQ"></script>
+
+<div id="player"></div>
+<button id="playButton">Play</button>
+<button id="pauseButton">Pause</button>
+<button id="seekButton">Seek 10 seconds</button>
+
+<script>
+  var player;
+
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+      videoId: 'ymvYySd_P2E',
+      playerVars: {
+        autoplay: 0, // Sin reproducción automática
+        controls: 0, // Sin mostrar controles del reproductor (serán personalizados)
+      },
+      events: {
+        onReady: onPlayerReady
+      }
+    });
+  }
+
+  function onPlayerReady(event) {
+    // Asigna las funciones a los botones personalizados
+    document.getElementById('playButton').addEventListener('click', playVideo);
+    document.getElementById('pauseButton').addEventListener('click', pauseVideo);
+    document.getElementById('seekButton').addEventListener('click', seekVideo);
+  }
+
+  function playVideo() {
+    player.playVideo();
+  }
+
+  function pauseVideo() {
+    player.pauseVideo();
+  }
+
+  function seekVideo() {
+    var currentTime = player.getCurrentTime();
+    player.seekTo(currentTime + 10, true);
+  }
+</script>
